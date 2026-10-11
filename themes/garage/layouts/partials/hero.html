@@ -1,21 +1,8 @@
 {{ $home := hugo.Data.homepage }}
 {{ if $home.hero_area.enable }}
-{{ $facts := partial "facts.html" . }}
 <section id="hero-area" class="hero">
-  {{ with $home.hero_area.bg_image }}
-  {{ partial "picture.html" (dict "src" . "alt" "Voiture ancienne dans l'atelier du garage" "width" 1600 "sizes" "100vw" "class" "hero-img" "loading" "eager" "fetchpriority" "high") }}
-  {{ end }}
-  <div class="hero-shade" aria-hidden="true"></div>
   <div class="container hero-copy">
-    <p class="eyebrow">Cudrefin</p>
-    <h1>{{ site.Title }}</h1>
     <p class="lede">Entretien préventif, mécanique générale et restauration automobile.</p>
-    <div class="hero-actions">
-      {{ with $facts.phone }}
-      <a class="btn btn-primary" href="tel:{{ $facts.tel }}">Appeler {{ . }}</a>
-      {{ end }}
-      <a class="btn btn-ghost" href="{{ "/#contact-us" | relURL }}">Contact</a>
-    </div>
   </div>
 </section>
 {{ end }}

@@ -1,19 +1,6 @@
-{{ $facts := partial "facts.html" . }}
 <a class="skip-link" href="#contenu">Aller au contenu</a>
 <header class="site-header">
   <div class="container header-bar">
-    <a class="brand" href="{{ "/" | relURL }}">
-      {{ partial "picture.html" (dict "src" site.Params.logo "alt" site.Title "width" 480 "sizes" "220px" "class" "brand-logo" "loading" "eager") }}
-    </a>
-    <div class="header-tools">
-      {{ with $facts.phone }}
-      <a class="header-call" href="tel:{{ $facts.tel }}">{{ . }}</a>
-      {{ end }}
-      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
-        <span class="nav-toggle-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Menu</span>
-      </button>
-    </div>
     <nav id="site-nav" class="site-nav" aria-label="Navigation">
       <ul>
         {{ range site.Menus.main }}

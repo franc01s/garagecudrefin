@@ -87,112 +87,60 @@ p { margin: 0 0 1rem; }
   position: sticky;
   top: 0;
   z-index: 30;
-  background: var(--header);
-  color: #fff;
+  background: transparent;
 }
 
 .header-bar {
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
-  justify-content: space-between;
-  gap: 0.75rem 1rem;
-  min-height: 4.5rem;
-  padding: 0.6rem 0;
+  justify-content: flex-end;
+  min-height: 0;
+  padding: 0.85rem 1.5rem;
+  background: rgba(255, 255, 255, 0.92);
 }
 
-.brand { display: flex; align-items: center; }
-
-.brand-logo { height: 34px; width: auto; }
-
-.header-tools { display: flex; align-items: center; gap: 0.75rem; margin-left: auto; }
-
-.header-call {
-  display: none;
-  color: #fff;
-  text-decoration: none;
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  border-radius: 999px;
-  padding: 0.45rem 0.9rem;
-  font-variant-numeric: tabular-nums;
-}
-
-.header-call:hover { background: #fff; color: var(--header); }
-
-.nav-toggle {
-  width: 2.75rem;
-  height: 2.75rem;
-  border: 1px solid rgba(255, 255, 255, 0.35);
-  border-radius: 10px;
-  background: transparent;
-  color: #fff;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.nav-toggle-icon,
-.nav-toggle-icon::before,
-.nav-toggle-icon::after {
-  display: block;
-  width: 1.1rem;
-  height: 2px;
-  background: #fff;
-  position: relative;
-  content: "";
-}
-
-.nav-toggle-icon::before { position: absolute; top: -6px; }
-
-.nav-toggle-icon::after { position: absolute; top: 6px; }
-
-.site-nav {
-  display: none;
-  flex-basis: 100%;
-  order: 3;
-}
-
-.site-nav.is-open { display: block; }
+.site-nav { width: 100%; }
 
 .site-nav ul {
   list-style: none;
   margin: 0;
-  padding: 0.25rem 0 0.6rem;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 0.4rem 1.9rem;
 }
 
 .site-nav a {
   display: block;
-  color: #fff;
+  position: relative;
+  color: #2e2e2e;
   text-decoration: none;
-  padding: 0.75rem 0;
-  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 0.35rem 0;
+  text-transform: uppercase;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.2;
 }
 
-.site-nav a:hover { color: #f3d2c4; }
-
-.hero {
-  position: relative;
-  color: var(--ink);
-  background: var(--cream);
-  overflow: hidden;
+.site-nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  background: #e94c3d;
+  transition: width 0.3s;
 }
 
-.hero-img {
-  position: relative;
-  width: 100%;
-  height: auto;
-  max-width: none;
-  aspect-ratio: 16 / 9;
-  object-fit: cover;
-  object-position: center 45%;
-}
+.site-nav a:hover { color: #2e2e2e; }
 
-.hero-shade { display: none; }
+.site-nav a:hover::after { width: 100%; }
 
-.hero-copy {
-  position: relative;
-  padding: 1.6rem 0 0.25rem;
-  max-width: 40rem;
+@media (max-width: 699px) {
+  .site-nav ul { justify-content: center; gap: 0.35rem 1rem; }
+  .header-bar { justify-content: center; padding: 0.75rem 1rem; }
 }
 
 .eyebrow {
@@ -453,45 +401,6 @@ p { margin: 0 0 1rem; }
 }
 
 @media (min-width: 900px) {
-  .brand-logo { height: 40px; }
-  .header-call { display: inline-flex; }
-  .nav-toggle { display: none; }
-  .header-bar { flex-wrap: nowrap; }
-  .site-nav {
-    display: block;
-    flex-basis: auto;
-    order: 0;
-    margin-left: 1rem;
-  }
-  .site-nav ul { display: flex; gap: 0.3rem 1.15rem; padding: 0; }
-  .site-nav a { border: 0; padding: 0.35rem 0; }
-  .hero {
-    min-height: 78svh;
-    display: grid;
-    align-items: end;
-    color: #fff;
-    background: #1a1816;
-  }
-  .hero-img {
-    position: absolute;
-    inset: 0;
-    height: 100%;
-    aspect-ratio: auto;
-  }
-  .hero-shade {
-    display: block;
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(180deg, rgba(12, 10, 8, 0.12) 0%, rgba(12, 10, 8, 0.18) 42%, rgba(12, 10, 8, 0.84) 100%);
-  }
-  .hero-copy { padding: 4rem 0 3.25rem; }
-  .hero .eyebrow { color: #f0d2c4; }
-  .hero .lede { color: rgba(255, 255, 255, 0.92); }
-  .hero .btn-ghost {
-    color: #fff;
-    border-color: rgba(255, 255, 255, 0.7);
-  }
-  .hero .btn-ghost:hover { background: #fff; color: var(--ink); }
   .services-layout { grid-template-columns: 1.05fr 0.95fr; align-items: start; }
   .services-photo { position: sticky; top: 5.5rem; }
   .contact-layout { grid-template-columns: 0.85fr 1.15fr; align-items: stretch; }

@@ -13,6 +13,3 @@ public
 # Hugo build artifacts
 resources/_gen/
 .hugo_build.lock
-
-# Theme preview images (not used by the site)
-themes/garage/images/

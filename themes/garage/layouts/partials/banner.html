@@ -1,0 +1,8 @@
+{{ $home := hugo.Data.homepage }}
+{{ if and $home.hero_area.enable $home.hero_area.bg_image }}
+<figure class="banner">
+  <div class="container">
+    {{ partial "picture.html" (dict "src" $home.hero_area.bg_image "alt" "Voiture ancienne dans l'atelier du garage" "width" 1600 "sizes" "(min-width: 1392px) 1360px, calc(100vw - 2rem)" "class" "banner-img" "loading" "eager" "fetchpriority" "high") }}
+  </div>
+</figure>
+{{ end }}

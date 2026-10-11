@@ -10,7 +10,6 @@ enableRobotsTXT = true
   pagerSize = 4
 
 [params]
-  logo = "images/logo.png"
   author = "Eduardo Martins"
   description = "Garage à Cudrefin : entretien préventif et mécanique générale, restauration automobile, préparation expertise, bus camping, voitures de remplacement, utilitaires légers, entreposage et installation de pneus."
   main_sections = ["post"]

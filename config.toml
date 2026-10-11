@@ -1,147 +1,66 @@
-######################## default configuration ####################
 baseURL = "https://garagecudrefin.ch/"
-languageCode = "en-us"
+locale = "fr-ch"
+defaultContentLanguage = "fr"
 title = "Garage Cudrefin"
 theme = "garage"
-summaryLength = "10"
-paginate = 4
+summaryLength = 30
+enableRobotsTXT = true
 
+[pagination]
+  pagerSize = 4
 
-############################# Plugins ##############################
-
-# CSS Plugins
-[[params.plugins.css]]
-URL = "css/bootstrap.min.css"
-[[params.plugins.css]]
-URL = "css/slick.css"
-[[params.plugins.css]]
-URL = "css/font-awesome.min.css"
-[[params.plugins.css]]
-URL = "css/animate.min.css"
-[[params.plugins.css]]
-URL = "css/venobox.css"
-[[params.plugins.css]]
-URL = "css/main.css"
-[[params.plugins.css]]
-URL = "css/responsive.css"
-
-# JS Plugins
-[[params.plugins.js]]
-URL = "js/jquery.min.js"
-[[params.plugins.js]]
-URL = "js/bootstrap.min.js"
-[[params.plugins.js]]
-URL = "js/slick.min.js"
-[[params.plugins.js]]
-URL = "js/wow.min.js"
-[[params.plugins.js]]
-URL = "js/venobox.min.js"
-[[params.plugins.js]]
-URL = "js/main.js"
-
-############################## navigation ###############################
-
-[[menu.main]]
-name = "Home"
-URL = "hero-area"
-weight = 1
-
-[[menu.main]]
-name = "Service"
-URL = "about-us"
-weight = 2
-
-[[menu.main]]
-name = "Blog"
-URL = "blog"
-weight = 3
-
-[[menu.main]]
-name = "Contact"
-URL = "contact-us"
-weight = 4
-
-
-#################### default parameters ################################
 [params]
-logo = "images/logo.png"
-# meta data
-author = "Themefisher"
-description = "This is meta description"
-# google analitycs ID
-google_analitycs_id = "Your ID"
-# mainSections
-main_sections = ["post"]
-# copyright
-copyright = "Copyright eduardo@garagecudrefin.ch"
+  author = "Eduardo Martins"
+  description = "Garage à Cudrefin : entretien préventif et mécanique générale, restauration automobile, préparation expertise, bus camping, voitures de remplacement, utilitaires légers, entreposage et installation de pneus."
+  main_sections = ["post"]
+  copyright = "Copyright eduardo@garagecudrefin.ch"
 
-# Preloader
-[params.preloader]
-enable = false
-preloader = "" # use .png , .svg or .gif format
+  # Marker already used by the previous OpenStreetMap embed.
+  [params.map]
+    latitude = 46.9605
+    longitude = 7.0305
+    bbox = "7.023,46.955,7.037,46.965"
 
-################################### Footer ############################
 [params.footer]
-enable = true
-contactInfoTitle = "CONTACT <span>INFORMATION</span> "
-blogTitle = "LATEST <span>BLOG POSTS</span>"
-galleryTitle = "PHOTO <span>STREAM</span>"
-socialTitle = "Follow <span>US</span>"
-
-############################ footer contact item
+  enable = true
+  contactInfoTitle = "Contact"
 
 [[params.footer.contactItem]]
-title="Eduardo Martins"
-icon = "fa fa-camera"
-content = "---"
+  title = "Eduardo Martins"
+  icon = "fa fa-camera"
+  content = "---"
 
 [[params.footer.contactItem]]
-title="Téléphone"
-icon = "fa fa-phone"
-content = "+41 26 677 05 96"
+  title = "Téléphone"
+  icon = "fa fa-phone"
+  content = "+41 26 677 05 96"
 
 [[params.footer.contactItem]]
-title="Adresse"
-icon = "fa fa-map-marker"
-content = "Z. A. Les Courtes-Parties A 1, 1588 Cudrefin"
+  title = "Adresse"
+  icon = "fa fa-map-marker"
+  content = "Z. A. Les Courtes-Parties A 1, 1588 Cudrefin"
 
 [[params.footer.contactItem]]
-title="E-mail"
-icon = "fa fa-envelope"
-content = "contact@garagecudrefin.ch"
+  title = "E-mail"
+  icon = "fa fa-envelope"
+  content = "contact@garagecudrefin.ch"
 
-######################### footer gallery
-[[params.footer.gallery]]
-image = "images/slider/slider-img-1.jpg"
+[[menu.main]]
+  name = "Accueil"
+  url = "/#hero-area"
+  weight = 1
 
-[[params.footer.gallery]]
-image = "images/slider/slider-img-2.jpg"
+[[menu.main]]
+  name = "Services"
+  url = "/#about-us"
+  weight = 2
 
-[[params.footer.gallery]]
-image = "images/slider/slider-img-3.jpg"
+[[menu.main]]
+  name = "Travaux"
+  url = "/#blog"
+  weight = 3
 
-[[params.footer.gallery]]
-image = "images/slider/slider-img-4.jpg"
-
-[[params.footer.gallery]]
-image = "images/slider/slider-img-1.jpg"
-
-[[params.footer.gallery]]
-image = "images/slider/slider-img-2.jpg"
-
-######################## Social Icon 
-[[params.footer.socialLink]]
-icon = "facebook"
-link = "https://fb.com/themefisher"
-
-[[params.footer.socialLink]]
-icon = "twitter"
-link = "https://fb.com/themefisher"
-
-[[params.footer.socialLink]]
-icon = "dribbble"
-link = "https://fb.com/themefisher"
-
-[[params.footer.socialLink]]
-icon = "instagram"
-link = "https://fb.com/themefisher"
+[[menu.main]]
+  name = "Contact"
+  url = "/#contact-us"
+  weight = 4

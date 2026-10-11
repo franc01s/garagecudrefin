@@ -1,20 +1,55 @@
 <head>
   <meta charset="utf-8">
-  <title>{{ .Title }}</title>
-
-  {{ "<!-- mobile responsive meta -->" | safeHTML }}
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ with site.Params.description }}{{ . }}{{ end }}{{ end }}">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  {{ $desc := partial "description.html" . }}
+  <title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }} · {{ site.Title }}{{ end }}</title>
+  <meta name="description" content="{{ $desc }}">
   {{ with site.Params.author }}<meta name="author" content="{{ . }}">{{ end }}
+  <link rel="canonical" href="{{ .Permalink }}">
+  <meta name="theme-color" content="#141210">
   {{ hugo.Generator }}
 
-  {{ "<!-- plugins -->" | safeHTML }}
-  {{ range site.Params.plugins.css }}
-  <link rel="stylesheet" href="{{ .URL | absURL }}">
+  <meta property="og:site_name" content="{{ site.Title }}">
+  <meta property="og:locale" content="fr_CH">
+  <meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
+  <meta property="og:title" content="{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }}{{ end }}">
+  <meta property="og:description" content="{{ $desc }}">
+  <meta property="og:url" content="{{ .Permalink }}">
+  {{ $og := "" }}
+  {{ with .Params.image }}
+    {{ $path := . }}
+    {{ with resources.Get $path }}
+      {{ $stem := $path | replaceRE `\.[^.]+$` "" }}
+      {{ $og = (partial "publish-image.html" (dict "img" . "spec" "1200x webp q75" "stem" $stem)).Permalink }}
+    {{ end }}
+  {{ end }}
+  {{ if not $og }}
+    {{ with hugo.Data.homepage.hero_area.bg_image }}
+      {{ $path := . }}
+      {{ with resources.Get $path }}
+        {{ $stem := $path | replaceRE `\.[^.]+$` "" }}
+        {{ $og = (partial "publish-image.html" (dict "img" . "spec" "1200x webp q75" "stem" $stem)).Permalink }}
+      {{ end }}
+    {{ end }}
+  {{ end }}
+  {{ with $og }}
+  <meta property="og:image" content="{{ . }}">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="{{ . }}">
+  {{ end }}
+  <meta name="twitter:title" content="{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }}{{ end }}">
+  <meta name="twitter:description" content="{{ $desc }}">
+
+  <link rel="icon" href="{{ "favicon.svg" | relURL }}" type="image/svg+xml">
+  <link rel="icon" href="{{ "images/favicon.png" | relURL }}" type="image/png" sizes="192x192">
+  <link rel="apple-touch-icon" href="{{ "images/apple-touch-icon.png" | relURL }}">
+
+  {{ with .OutputFormats.Get "rss" }}
+  <link rel="alternate" type="application/rss+xml" title="{{ site.Title }}" href="{{ .Permalink }}">
   {{ end }}
 
-  {{ "<!--Favicon-->" | safeHTML }}
-  <link rel="shortcut icon" href="{{ `images/favicon.png` | absURL }}" type="image/x-icon">
-  <link rel="icon" href="{{ `images/favicon.png` | absURL }}" type="image/x-icon">
+  {{ $css := resources.Get "css/main.css" | minify | fingerprint }}
+  <link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">
 
+  {{ if .IsHome }}{{ partial "schema.html" . }}{{ end }}
 </head>

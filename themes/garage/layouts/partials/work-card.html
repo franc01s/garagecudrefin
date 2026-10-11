@@ -1,0 +1,21 @@
+{{ $page := .page }}
+{{ $level := .level | default "h3" }}
+<article class="card">
+  <a class="card-link" href="{{ $page.RelPermalink }}">
+    {{ with $page.Params.image }}
+    {{ partial "picture.html" (dict "src" . "alt" "" "width" 900 "sizes" "(min-width: 700px) 45vw, 100vw" "class" "card-img") }}
+    {{ end }}
+    <div class="card-body">
+      {{ if eq $level "h2" }}
+      <h2 class="card-title">{{ $page.Title }}</h2>
+      {{ else }}
+      <h3 class="card-title">{{ $page.Title }}</h3>
+      {{ end }}
+      <time datetime="{{ $page.Date.Format "2006-01-02" }}">{{ $page.Date | time.Format ":date_long" }}</time>
+      {{ $blurb := $page.Description }}
+      {{ if and $blurb (ne $blurb "this is meta description") (ne $blurb "This is meta description") }}
+      <p>{{ $blurb }}</p>
+      {{ end }}
+    </div>
+  </a>
+</article>

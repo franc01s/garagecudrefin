@@ -1,0 +1,6 @@
+{{ $d := "" }}
+{{ with .Description }}{{ $d = . }}{{ end }}
+{{ if or (not $d) (eq $d "this is meta description") (eq $d "This is meta description") }}
+  {{ $d = site.Params.description }}
+{{ end }}
+{{ return $d }}

@@ -1,0 +1,8 @@
+{{ $home := hugo.Data.homepage }}
+{{ if $home.hero_area.enable }}
+<section id="hero-area" class="hero">
+  <div class="container hero-copy">
+    <p class="lede">Entretien préventif, mécanique générale et restauration automobile.</p>
+  </div>
+</section>
+{{ end }}

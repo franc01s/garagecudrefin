@@ -1,0 +1,18 @@
+{{ $blog := hugo.Data.homepage.blog }}
+{{ if $blog.enable }}
+<section id="blog" class="section" aria-labelledby="works-title">
+  <div class="container">
+    <div class="section-head">
+      <h2 id="works-title">{{ $blog.title }}</h2>
+    </div>
+    <div class="card-grid">
+      {{ range first 4 (where site.RegularPages "Type" "in" site.Params.main_sections) }}
+      {{ partial "work-card.html" (dict "page" . "level" "h3") }}
+      {{ end }}
+    </div>
+    <p class="section-more">
+      <a class="btn btn-line" href="{{ "post/" | relURL }}">Tous les travaux</a>
+    </p>
+  </div>
+</section>
+{{ end }}

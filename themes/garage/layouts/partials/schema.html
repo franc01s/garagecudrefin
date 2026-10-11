@@ -1,0 +1,29 @@
+{{ $facts := partial "facts.html" . }}
+{{ $image := "" }}
+{{ with hugo.Data.homepage.hero_area.bg_image }}
+  {{ $path := . }}
+  {{ with resources.Get $path }}
+    {{ $stem := $path | replaceRE `\.[^.]+$` "" }}
+    {{ $image = (partial "publish-image.html" (dict "img" . "spec" "1200x webp q75" "stem" $stem)).Permalink }}
+  {{ end }}
+{{ end }}
+{{ $address := dict
+  "@type" "PostalAddress"
+  "streetAddress" $facts.address
+  "addressCountry" "CH"
+}}
+{{ $schema := dict
+  "@context" "https://schema.org"
+  "@type" "AutoRepair"
+  "name" site.Title
+  "url" site.BaseURL
+  "description" site.Params.description
+  "image" $image
+  "telephone" $facts.phone
+  "email" $facts.email
+  "address" $address
+}}
+{{ with site.Params.map }}
+  {{ $schema = merge $schema (dict "geo" (dict "@type" "GeoCoordinates" "latitude" .latitude "longitude" .longitude)) }}
+{{ end }}
+<script type="application/ld+json">{{ $schema | jsonify | safeJS }}</script>

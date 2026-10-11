@@ -1,0 +1,29 @@
+{{ $img := resources.Get .src }}
+{{ if not $img }}
+  {{ errorf "image %q was not found in assets" .src }}
+{{ end }}
+{{ $stem := .src | replaceRE `\.[^.]+$` "" }}
+{{ $target := .width | default 960 }}
+{{ if lt $img.Width $target }}{{ $target = $img.Width }}{{ end }}
+{{ $fallback := partial "publish-image.html" (dict "img" $img "spec" (printf "%dx webp q75" $target) "stem" $stem) }}
+{{ $pieces := slice }}
+{{ range slice 480 800 1200 1600 2000 }}
+  {{ if ge $img.Width . }}
+    {{ $resized := partial "publish-image.html" (dict "img" $img "spec" (printf "%dx webp q75" .) "stem" $stem) }}
+    {{ $pieces = $pieces | append (printf "%s %dw" $resized.RelPermalink $resized.Width) }}
+  {{ end }}
+{{ end }}
+{{ if eq (len $pieces) 0 }}
+  {{ $pieces = slice (printf "%s %dw" $fallback.RelPermalink $fallback.Width) }}
+{{ end }}
+<img
+  src="{{ $fallback.RelPermalink }}"
+  srcset="{{ delimit $pieces ", " }}"
+  sizes="{{ .sizes | default "100vw" }}"
+  alt="{{ .alt }}"
+  width="{{ $fallback.Width }}"
+  height="{{ $fallback.Height }}"
+  {{ with .class }}class="{{ . }}"{{ end }}
+  loading="{{ .loading | default "lazy" }}"
+  decoding="async"
+  {{ with .fetchpriority }}fetchpriority="{{ . }}"{{ end }}>

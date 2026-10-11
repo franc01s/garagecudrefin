@@ -1,25 +1,19 @@
 {{ define "main" }}
-
-{{- partial "header.html" . -}}
-
-<section class="section blog-single-page">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2 text-center">
-                <img class="img-responsive post-thumb d-inline-block" src="{{ .Params.image | absURL }}" alt="blog-image">
-                <h1 class="post-title">{{ .Title }}</h1>
-                <ul class="list-inline mb-50 post-meta">
-                    <li class="list-inline-item">{{ .Params.author }}</li>
-                    <li class="list-inline-item">{{ dateFormat "Monday, Jan 2, 2006" .Date }}</li>
-                </ul>
-            </div>
-            <div class="col-md-8 col-md-offset-2">
-                <div class="post-single-content">
-                    {{ .Content }}
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
+<article class="section article">
+  <div class="container narrow">
+    <p class="eyebrow"><a href="{{ "post/" | relURL }}">Travaux</a></p>
+    <h1>{{ .Title }}</h1>
+    <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date | time.Format ":date_long" }}</time>
+    {{ with .Params.image }}
+    <figure class="article-figure">
+      {{ partial "picture.html" (dict "src" . "alt" $.Title "width" 1400 "sizes" "(min-width: 800px) 720px, 100vw" "loading" "eager") }}
+    </figure>
+    {{ end }}
+    {{ $blurb := .Description }}
+    {{ if and $blurb (ne $blurb "this is meta description") (ne $blurb "This is meta description") (not .Content) }}
+    <p class="lede">{{ $blurb }}</p>
+    {{ end }}
+    {{ with .Content }}<div class="prose">{{ . }}</div>{{ end }}
+  </div>
+</article>
 {{ end }}

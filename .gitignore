@@ -1,0 +1,18 @@
+Thumbs.db
+.DS_Store
+.dist
+.tmp
+.sass-cache
+npm-debug.log
+node_modules
+builds
+package-lock.json
+public
+.idea 
+
+# Hugo build artifacts
+resources/_gen/
+.hugo_build.lock
+
+# Theme preview images (not used by the site)
+themes/garage/images/

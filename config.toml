@@ -1,0 +1,147 @@
+######################## default configuration ####################
+baseURL = "https://garagecudrefin.ch/"
+languageCode = "en-us"
+title = "Garage Cudrefin"
+theme = "garage"
+summaryLength = "10"
+paginate = 4
+
+
+############################# Plugins ##############################
+
+# CSS Plugins
+[[params.plugins.css]]
+URL = "css/bootstrap.min.css"
+[[params.plugins.css]]
+URL = "css/slick.css"
+[[params.plugins.css]]
+URL = "css/font-awesome.min.css"
+[[params.plugins.css]]
+URL = "css/animate.min.css"
+[[params.plugins.css]]
+URL = "css/venobox.css"
+[[params.plugins.css]]
+URL = "css/main.css"
+[[params.plugins.css]]
+URL = "css/responsive.css"
+
+# JS Plugins
+[[params.plugins.js]]
+URL = "js/jquery.min.js"
+[[params.plugins.js]]
+URL = "js/bootstrap.min.js"
+[[params.plugins.js]]
+URL = "js/slick.min.js"
+[[params.plugins.js]]
+URL = "js/wow.min.js"
+[[params.plugins.js]]
+URL = "js/venobox.min.js"
+[[params.plugins.js]]
+URL = "js/main.js"
+
+############################## navigation ###############################
+
+[[menu.main]]
+name = "Home"
+URL = "hero-area"
+weight = 1
+
+[[menu.main]]
+name = "Service"
+URL = "about-us"
+weight = 2
+
+[[menu.main]]
+name = "Blog"
+URL = "blog"
+weight = 3
+
+[[menu.main]]
+name = "Contact"
+URL = "contact-us"
+weight = 4
+
+
+#################### default parameters ################################
+[params]
+logo = "images/logo.png"
+# meta data
+author = "Themefisher"
+description = "This is meta description"
+# google analitycs ID
+google_analitycs_id = "Your ID"
+# mainSections
+main_sections = ["post"]
+# copyright
+copyright = "Copyright eduardo@garagecudrefin.ch"
+
+# Preloader
+[params.preloader]
+enable = false
+preloader = "" # use .png , .svg or .gif format
+
+################################### Footer ############################
+[params.footer]
+enable = true
+contactInfoTitle = "CONTACT <span>INFORMATION</span> "
+blogTitle = "LATEST <span>BLOG POSTS</span>"
+galleryTitle = "PHOTO <span>STREAM</span>"
+socialTitle = "Follow <span>US</span>"
+
+############################ footer contact item
+
+[[params.footer.contactItem]]
+title="Eduardo Martins"
+icon = "fa fa-camera"
+content = "---"
+
+[[params.footer.contactItem]]
+title="Téléphone"
+icon = "fa fa-phone"
+content = "+41 26 677 05 96"
+
+[[params.footer.contactItem]]
+title="Adresse"
+icon = "fa fa-map-marker"
+content = "Z. A. Les Courtes-Parties A 1, 1588 Cudrefin"
+
+[[params.footer.contactItem]]
+title="E-mail"
+icon = "fa fa-envelope"
+content = "contact@garagecudrefin.ch"
+
+######################### footer gallery
+[[params.footer.gallery]]
+image = "images/slider/slider-img-1.jpg"
+
+[[params.footer.gallery]]
+image = "images/slider/slider-img-2.jpg"
+
+[[params.footer.gallery]]
+image = "images/slider/slider-img-3.jpg"
+
+[[params.footer.gallery]]
+image = "images/slider/slider-img-4.jpg"
+
+[[params.footer.gallery]]
+image = "images/slider/slider-img-1.jpg"
+
+[[params.footer.gallery]]
+image = "images/slider/slider-img-2.jpg"
+
+######################## Social Icon 
+[[params.footer.socialLink]]
+icon = "facebook"
+link = "https://fb.com/themefisher"
+
+[[params.footer.socialLink]]
+icon = "twitter"
+link = "https://fb.com/themefisher"
+
+[[params.footer.socialLink]]
+icon = "dribbble"
+link = "https://fb.com/themefisher"
+
+[[params.footer.socialLink]]
+icon = "instagram"
+link = "https://fb.com/themefisher"

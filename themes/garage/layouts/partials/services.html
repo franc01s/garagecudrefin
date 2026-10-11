@@ -1,0 +1,19 @@
+{{ with hugo.Data.homepage.about }}
+{{ if .enable }}
+<section id="about-us" class="section" aria-labelledby="services-title">
+  <div class="container services-layout">
+    <div>
+      <h1 id="services-title">{{ .title }}</h1>
+      <div class="service-list">
+        {{ .description | markdownify }}
+      </div>
+    </div>
+    {{ with .image }}
+    <figure class="services-photo">
+      {{ partial "picture.html" (dict "src" . "alt" "Tasse de café" "width" 1200 "sizes" "(min-width: 900px) 40vw, 100vw") }}
+    </figure>
+    {{ end }}
+  </div>
+</section>
+{{ end }}
+{{ end }}

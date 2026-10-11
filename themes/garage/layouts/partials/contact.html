@@ -1,29 +1,56 @@
-{{ if site.Data.homepage.contact.enable }}
-{{ with site.Data.homepage.contact }}
-<section id="contact-us">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-12">
-				<div class="block">
-					<h1 class=" heading wow fadeInUp" data-wow-duration="300ms" data-wow-delay="300ms">{{ .title | markdownify }}</h1>
-					<h3 class="title wow fadeInLeft" data-wow-duration="500ms" data-wow-delay="300ms">{{ .subtitle | markdownify }}</h3>
-					<form action="{{ .form_action }}" method="POST">
-						<div class="form-group wow fadeInDown" data-wow-duration="500ms" data-wow-delay="600ms">
-							<input type="email" name="email" class="form-control" placeholder="Write your email address here...">
-						</div>
-						<div class="form-group wow fadeInDown" data-wow-duration="500ms" data-wow-delay="800ms">
-							<input type="text" name="name" class="form-control" placeholder="Write your full name here...">
-						</div>
-						<div class="form-group wow fadeInDown" data-wow-duration="500ms" data-wow-delay="1000ms">
-							<textarea class="form-control" rows="3" name="message" placeholder="Write your message here..."></textarea>
-						</div>
-						<button type="submit" value="send" class="btn btn-default wow bounceIn" data-wow-duration="500ms" data-wow-delay="1300ms"
-						role="button">send your message</button>
-					</form>
-				</div>
-			</div><!-- .col-md-12 close -->
-		</div><!-- .row close -->
-	</div><!-- .container close -->
-</section><!-- #contact-us close -->
-{{end}}
-{{end}}
+{{ if site.Params.footer.enable }}
+{{ $facts := partial "facts.html" . }}
+<section id="contact-us" class="section section-alt" aria-labelledby="contact-title">
+  <div class="container contact-layout">
+    <div>
+      <h2 id="contact-title">{{ site.Params.footer.contactInfoTitle }}</h2>
+      <dl class="contact-list">
+        {{ with $facts.name }}
+        <div>
+          <dt class="visually-hidden">Nom</dt>
+          <dd class="contact-name">{{ . }}</dd>
+        </div>
+        {{ end }}
+        {{ with $facts.phone }}
+        <div>
+          <dt>Téléphone</dt>
+          <dd><a href="tel:{{ $facts.tel }}">{{ . }}</a></dd>
+        </div>
+        {{ end }}
+        {{ with $facts.address }}
+        <div>
+          <dt>Adresse</dt>
+          <dd>{{ . }}</dd>
+        </div>
+        {{ end }}
+        {{ with $facts.email }}
+        <div>
+          <dt>E-mail</dt>
+          <dd><a href="mailto:{{ . }}">{{ . }}</a></dd>
+        </div>
+        {{ end }}
+      </dl>
+      {{ with hugo.Data.homepage.hours }}
+      <h3 class="hours-title">Horaires</h3>
+      <dl class="hours-list">
+        {{ range . }}
+        <div>
+          <dt>{{ .label }}</dt>
+          <dd>{{ .value }}</dd>
+        </div>
+        {{ end }}
+      </dl>
+      {{ end }}
+    </div>
+    {{ with site.Params.map }}
+    <div class="map-panel">
+      <iframe
+        title="Carte : {{ $facts.address }}"
+        src="https://www.openstreetmap.org/export/embed.html?bbox={{ .bbox }}&amp;layer=mapnik&amp;marker={{ .latitude }},{{ .longitude }}"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+    {{ end }}
+  </div>
+</section>
+{{ end }}

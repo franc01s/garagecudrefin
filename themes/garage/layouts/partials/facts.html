@@ -1,0 +1,16 @@
+{{ $name := "" }}
+{{ $phone := "" }}
+{{ $email := "" }}
+{{ $address := "" }}
+{{ range site.Params.footer.contactItem }}
+  {{ if eq .title "Téléphone" }}
+    {{ $phone = .content }}
+  {{ else if eq .title "E-mail" }}
+    {{ $email = .content }}
+  {{ else if eq .title "Adresse" }}
+    {{ $address = .content }}
+  {{ else }}
+    {{ $name = .title }}
+  {{ end }}
+{{ end }}
+{{ return (dict "name" $name "phone" $phone "email" $email "address" $address "tel" (replace $phone " " "")) }}
